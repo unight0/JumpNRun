@@ -1,0 +1,89 @@
+[gd_scene load_steps=5 format=3 uid="uid://0wlm0mkuqewe"]
+
+[ext_resource type="FontFile" uid="uid://cmocuv2tukpti" path="res://PixeloidMono-d94EV.ttf" id="1_obt88"]
+[ext_resource type="Script" path="res://level_choice.gd" id="1_rd7p0"]
+
+[sub_resource type="Animation" id="Animation_qky5d"]
+resource_name = "fade"
+length = 0.7
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasModulate:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7civq"]
+_data = {
+"fade": SubResource("Animation_qky5d")
+}
+
+[node name="LevelChoice" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_rd7p0")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -3.0
+offset_right = -3.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.529412, 0.807843, 0.921569, 1)
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+
+[node name="Level1" type="Button" parent="CenterContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_obt88")
+theme_override_font_sizes/font_size = 48
+text = " 1 "
+
+[node name="Level2" type="Button" parent="CenterContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_obt88")
+theme_override_font_sizes/font_size = 48
+text = " 2 "
+
+[node name="Level3" type="Button" parent="CenterContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_obt88")
+theme_override_font_sizes/font_size = 48
+text = " 3 "
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasModulate"]
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_7civq")
+}
+
+[connection signal="pressed" from="CenterContainer/HBoxContainer/Level1" to="." method="_on_level_1_pressed"]
+[connection signal="pressed" from="CenterContainer/HBoxContainer/Level2" to="." method="_on_level_2_pressed"]
+[connection signal="pressed" from="CenterContainer/HBoxContainer/Level3" to="." method="_on_level_3_pressed"]

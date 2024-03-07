@@ -1,0 +1,73 @@
+[gd_scene load_steps=7 format=3 uid="uid://cphe1j28huh3w"]
+
+[ext_resource type="Script" path="res://game_over.gd" id="1_npviu"]
+[ext_resource type="FontFile" uid="uid://cmocuv2tukpti" path="res://PixeloidMono-d94EV.ttf" id="2_udadx"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_670nt"]
+font = ExtResource("2_udadx")
+font_size = 64
+font_color = Color(1, 1, 0.0196078, 1)
+outline_size = 1
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_sn8bo"]
+
+[sub_resource type="InputEventAction" id="InputEventAction_l5dum"]
+action = &"enter"
+
+[sub_resource type="Shortcut" id="Shortcut_uoci7"]
+events = [SubResource("InputEventAction_l5dum")]
+
+[node name="Won" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_npviu")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.529412, 0.807843, 0.921569, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="WinLabel" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Win!"
+label_settings = SubResource("LabelSettings_670nt")
+
+[node name="MenuButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(1, 1, 0.0196078, 1)
+theme_override_colors/font_pressed_color = Color(0.470588, 0.470588, 0, 1)
+theme_override_colors/font_hover_color = Color(0.592157, 0.592157, 0, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 0.0196078, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_udadx")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/focus = SubResource("StyleBoxEmpty_sn8bo")
+shortcut = SubResource("Shortcut_uoci7")
+text = "Menu"
+flat = true
+
+[connection signal="pressed" from="VBoxContainer/MenuButton" to="." method="_on_menu_button_pressed"]

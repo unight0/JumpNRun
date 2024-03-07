@@ -1,0 +1,45 @@
+[gd_scene load_steps=6 format=3 uid="uid://nh4itp0qxn8o"]
+
+[ext_resource type="Texture2D" uid="uid://d15gjdcmf38oa" path="res://shooter.png" id="1_2b31f"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kntiv"]
+atlas = ExtResource("1_2b31f")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wy237"]
+atlas = ExtResource("1_2b31f")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i7rgi"]
+atlas = ExtResource("1_2b31f")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ge1rc"]
+animations = [{
+"frames": [{
+"duration": 3.0,
+"texture": SubResource("AtlasTexture_kntiv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wy237")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i7rgi")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Shooter" type="StaticBody2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_ge1rc")
+autoplay = "default"
+frame_progress = 0.588557
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-8, 8, -7, 3, 2, -5, 8, -3, 8, 8)
+
+[node name="Spawning point" type="Marker2D" parent="."]
+position = Vector2(7, 0)

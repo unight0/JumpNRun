@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://cbuw1c24d37i6"]
+
+[ext_resource type="Texture2D" uid="uid://bv8iis82qq0ja" path="res://platform.png" id="1_eadad"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qjlch"]
+size = Vector2(32, 8)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_jp3qt"]
+polygon = PackedVector2Array(-16, -8, -16, 0, 16, 0, 16, -8)
+
+[node name="Platform" type="AnimatableBody2D" groups=["ground"]]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_eadad")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -4)
+shape = SubResource("RectangleShape2D_qjlch")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+occluder = SubResource("OccluderPolygon2D_jp3qt")
